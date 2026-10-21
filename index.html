@@ -1,0 +1,1560 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      FinData Lake : Real-Time Financial Market Data Lake & Feature Store
+    </title>
+
+    <!-- 1. Search Engine Crawler Directives (Robots) -->
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+
+    <!-- 2. Technical System Summary (Description) -->
+    <meta
+      name="description"
+      content="Explore FinData Lake: a low-latency, event-driven streaming architecture for financial tick ingestion and real-time feature extraction by Rayaan Tasnim."
+    />
+
+    <!-- 3. Engine Architecture Indexing Matrix (Keywords) -->
+    <meta
+      name="keywords"
+      content="FinData Lake, Rayaan Tasnim, Real-Time Feature Store, Quantitative Analytics Engine, High-Frequency Trading Infrastructure"
+    />
+
+    <!-- 4. Explicit Systems Architect Validation (Author) -->
+    <meta name="author" content="Rayaan Tasnim" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "@id": "https://github.com",
+        "name": "FinData Lake",
+        "description": "An ultra-low latency, event-driven streaming ecosystem engineered for high-frequency financial tick ingestion and real-time feature extraction.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS",
+        "programmingLanguage": "Python",
+        "softwareVersion": "1.0.0",
+        "codeRepository": "https://github.com/rayaantasnim/Real-Time-Financial-Market-Data-Lake-Feature-Store",
+        "author": {
+          "@type": "Person",
+          "name": "Rayaan Tasnim",
+          "memberOf": {
+            "@type": "Organization",
+            "name": "IDAI Universe"
+          }
+        }
+      }
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="design.js"></script>
+    <!-- GSAP Core & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body
+    class="font-sans antialiased bg-slate-950 text-slate-100 bg-grid-pattern relative selection:bg-cyan-400 selection:text-slate-950"
+  >
+    <!-- SCANLINE & BACKGROUND PARTICLES CANVAS -->
+    <div class="fixed inset-0 pointer-events-none z-50 scanline"></div>
+    <canvas
+      id="cyber-canvas"
+      class="fixed inset-0 pointer-events-none z-0 opacity-40"
+    ></canvas>
+
+    <!-- MOUSE AMBIENT DYNAMIC NEON GLOW CONTAINER -->
+    <div
+      id="ambient-glow"
+      class="pointer-events-none fixed inset-0 z-10 transition-opacity duration-300 opacity-0 md:opacity-100"
+      style="
+        background: radial-gradient(
+          600px circle at 0px 0px,
+          rgba(0, 240, 255, 0.08),
+          transparent 80%
+        );
+      "
+    ></div>
+
+    <!-- 1. 🌐 STICKY GLASSMORPHISM NAVBAR -->
+    <header
+      class="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-950/85 border-b border-cyan-500/25 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <!-- Brand Title -->
+          <a href="#" class="flex items-center space-x-3 group">
+            <div
+              class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-400/40 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] group-hover:scale-105 transition-all"
+            >
+              <i data-lucide="database" class="w-5 h-5"></i>
+            </div>
+            <div class="flex flex-col">
+              <span
+                class="font-mono font-bold text-lg md:text-xl tracking-wider text-slate-100 flex items-center gap-2 group-hover:text-cyan-400 transition-colors"
+              >
+                FinData Lake
+                <span
+                  class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"
+                ></span>
+              </span>
+              <span
+                class="font-mono text-[10px] text-cyan-400/90 tracking-widest uppercase flex items-center gap-1.5"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                REAL-TIME FEATURE STORE
+              </span>
+            </div>
+          </a>
+
+          <!-- Desktop Quick Navigation & GitHub Trigger -->
+          <div class="hidden lg:flex items-center space-x-8 font-mono text-xs">
+            <a
+              href="#hero"
+              class="text-slate-300 hover:text-cyan-400 transition-colors hover:neon-text-glow flex items-center gap-1.5"
+            >
+              <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400"></i>
+              Overview
+            </a>
+            <a
+              href="#orderbook"
+              class="text-slate-300 hover:text-cyan-400 transition-colors hover:neon-text-glow flex items-center gap-1.5"
+            >
+              <i data-lucide="activity" class="w-3.5 h-3.5 text-cyan-400"></i>
+              Live Order Book
+            </a>
+            <a
+              href="#benchmark"
+              class="text-slate-300 hover:text-cyan-400 transition-colors hover:neon-text-glow flex items-center gap-1.5"
+            >
+              <i data-lucide="gauge" class="w-3.5 h-3.5 text-cyan-400"></i>
+              Latency Calc
+            </a>
+            <a
+              href="#roadmap"
+              class="text-slate-300 hover:text-cyan-400 transition-colors hover:neon-text-glow flex items-center gap-1.5"
+            >
+              <i data-lucide="layers" class="w-3.5 h-3.5 text-cyan-400"></i> 11
+              Architecture Layers
+            </a>
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <a
+              href="https://github.com/rayaantasnim/Real-Time-Financial-Market-Data-Lake-Feature-Store"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hidden sm:flex items-center space-x-2 text-xs font-mono px-4 py-2.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/20 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all neon-btn"
+            >
+              <i data-lucide="github" class="w-4 h-4"></i>
+              <span>SOURCE CODE</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 ml-0.5"></i>
+            </a>
+
+            <!-- Drawer Open Toggle Button -->
+            <button
+              id="menu-toggle"
+              aria-label="Open Navigation Drawer"
+              class="relative z-30 p-2.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 text-cyan-400 hover:text-white hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] focus:outline-none transition-all group"
+            >
+              <i
+                data-lucide="menu"
+                class="w-6 h-6 group-hover:scale-110 transition-transform"
+              ></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- RIGHT OVERLAY NAVIGATION DRAWER -->
+    <div
+      id="nav-drawer"
+      class="fixed right-0 top-0 h-screen w-full md:w-96 bg-slate-950/98 backdrop-blur-3xl z-50 border-l border-cyan-500/30 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-[0_0_50px_rgba(0,0,0,0.9)]"
+    >
+      <div>
+        <!-- Overlay Header with Dedicated Close Cross Icon -->
+        <div
+          class="flex items-center justify-between pb-6 border-b border-cyan-500/20"
+        >
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></div>
+            <span
+              class="font-mono text-xs text-cyan-400 uppercase tracking-widest font-bold"
+              >System Navigation</span
+            >
+          </div>
+          <!-- DEDICATED CLOSE CROSS ICON BUTTON -->
+          <button
+            id="drawer-close"
+            aria-label="Close Navigation Menu"
+            class="p-2 rounded-lg bg-slate-900/80 border border-cyan-500/30 text-cyan-400 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all group"
+          >
+            <i
+              data-lucide="x"
+              class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300"
+            ></i>
+          </button>
+        </div>
+
+        <!-- Drawer Links -->
+        <nav class="space-y-3 font-mono text-sm mt-6">
+          <a
+            href="#hero"
+            class="nav-item flex items-center justify-between p-3.5 rounded-xl bg-slate-900/50 hover:bg-cyan-500/15 text-slate-300 hover:text-cyan-400 border border-cyan-500/10 hover:border-cyan-400/50 transition-all neon-card"
+          >
+            <span class="flex items-center gap-3"
+              ><i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i> 00.
+              Overview</span
+            >
+            <i data-lucide="chevron-right" class="w-4 h-4 text-cyan-400"></i>
+          </a>
+          <a
+            href="#orderbook"
+            class="nav-item flex items-center justify-between p-3.5 rounded-xl bg-slate-900/50 hover:bg-cyan-500/15 text-slate-300 hover:text-cyan-400 border border-cyan-500/10 hover:border-cyan-400/50 transition-all neon-card"
+          >
+            <span class="flex items-center gap-3"
+              ><i data-lucide="activity" class="w-4 h-4 text-cyan-400"></i> 01.
+              Live Order Book</span
+            >
+            <i data-lucide="chevron-right" class="w-4 h-4 text-cyan-400"></i>
+          </a>
+          <a
+            href="#benchmark"
+            class="nav-item flex items-center justify-between p-3.5 rounded-xl bg-slate-900/50 hover:bg-cyan-500/15 text-slate-300 hover:text-cyan-400 border border-cyan-500/10 hover:border-cyan-400/50 transition-all neon-card"
+          >
+            <span class="flex items-center gap-3"
+              ><i data-lucide="gauge" class="w-4 h-4 text-cyan-400"></i> 02.
+              Latency Benchmarks</span
+            >
+            <i data-lucide="chevron-right" class="w-4 h-4 text-cyan-400"></i>
+          </a>
+          <a
+            href="#roadmap"
+            class="nav-item flex items-center justify-between p-3.5 rounded-xl bg-slate-900/50 hover:bg-cyan-500/15 text-slate-300 hover:text-cyan-400 border border-cyan-500/10 hover:border-cyan-400/50 transition-all neon-card"
+          >
+            <span class="flex items-center gap-3"
+              ><i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i> 03. 11
+              Architecture Layers</span
+            >
+            <i data-lucide="chevron-right" class="w-4 h-4 text-cyan-400"></i>
+          </a>
+          <a
+            href="#live-simulator"
+            class="nav-item flex items-center justify-between p-3.5 rounded-xl bg-slate-900/50 hover:bg-cyan-500/15 text-slate-300 hover:text-cyan-400 border border-cyan-500/10 hover:border-cyan-400/50 transition-all neon-card"
+          >
+            <span class="flex items-center gap-3"
+              ><i data-lucide="cpu" class="w-4 h-4 text-cyan-400"></i> 04.
+              Dynamic Console</span
+            >
+            <i data-lucide="chevron-right" class="w-4 h-4 text-cyan-400"></i>
+          </a>
+        </nav>
+      </div>
+
+      <div class="space-y-4 font-mono pt-6 border-t border-cyan-500/20">
+        <div
+          class="p-4 rounded-xl bg-slate-900/90 border border-cyan-500/30 text-xs text-slate-300 neon-card"
+        >
+          <div class="text-cyan-400 font-bold mb-1 flex items-center gap-2">
+            <i data-lucide="code-2" class="w-4 h-4"></i> Repository Architect
+          </div>
+          <div class="text-slate-100 font-bold">Rayaan Tasnim</div>
+          <div class="text-slate-400 text-[11px] mt-1 flex items-center gap-1">
+            <i data-lucide="award" class="w-3 h-3 text-cyan-400"></i> Olympiad
+            Edge • Mymensingh, BD
+          </div>
+        </div>
+        <a
+          href="https://github.com/rayaantasnim/Real-Time-Financial-Market-Data-Lake-Feature-Store"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full flex items-center justify-center space-x-2 text-xs font-mono py-3.5 rounded-xl bg-cyan-400 text-slate-950 font-bold hover:bg-cyan-300 transition-all shadow-[0_0_20px_rgba(0,240,255,0.4)] neon-btn"
+        >
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>EXPLORE SOURCE REPOSITORY</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- 2. ⚡ THE HERO MATRIX LAYER -->
+    <section
+      id="hero"
+      class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      <!-- Radial Gradient Hero Ambient -->
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,240,255,0.12)_0%,transparent_70%)] pointer-events-none"
+      ></div>
+
+      <div class="max-w-6xl mx-auto text-center relative z-20 space-y-8">
+        <!-- High-Tech Badge Pill -->
+        <div
+          class="inline-flex items-center space-x-3 px-5 py-2.5 rounded-full bg-slate-900/90 border border-cyan-500/40 text-cyan-400 text-xs font-mono tracking-widest uppercase shadow-[0_0_20px_rgba(0,240,255,0.2)] hover:border-cyan-400 transition-all neon-card"
+        >
+          <span
+            class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"
+          ></span>
+          <span class="font-bold">SYSTEM STATUS: ONLINE</span>
+          <span class="text-slate-500">•</span>
+          <span class="text-emerald-400 flex items-center gap-1"
+            ><i data-lucide="zap" class="w-3 h-3"></i> TICK LATENCY &lt;
+            120µs</span
+          >
+        </div>
+
+        <!-- Dynamic Headline -->
+        <h1
+          class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-tight"
+        >
+          Real-Time Financial Market <br class="hidden sm:inline" />
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500 neon-text-glow"
+          >
+            Data Lake & Feature Store
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p
+          class="max-w-3xl mx-auto text-base sm:text-xl text-slate-300 font-sans leading-relaxed"
+        >
+          An ultra-low latency ingestion engine engineered by
+          <strong class="text-cyan-400 font-mono">Rayaan Tasnim</strong>. Built
+          for microsecond-level financial tick processing, SIMD matrix
+          computations, zero-copy memory maps, and automated ML feature store
+          pipelines.
+        </p>
+
+        <!-- Action Buttons with High-Tech Icons -->
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-5 pt-4 font-mono"
+        >
+          <a
+            href="#roadmap"
+            class="w-full sm:w-auto px-8 py-4 rounded-xl bg-cyan-400 text-slate-950 font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-3 hover:bg-cyan-300 transition-all shadow-[0_0_30px_rgba(0,240,255,0.4)] neon-btn group"
+          >
+            <span>Explore Architecture Layers</span>
+            <i
+              data-lucide="arrow-right"
+              class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+            ></i>
+          </a>
+          <a
+            href="https://github.com/rayaantasnim/Real-Time-Financial-Market-Data-Lake-Feature-Store"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900/90 text-cyan-400 border border-cyan-500/40 hover:border-cyan-400 hover:bg-cyan-500/10 transition-all font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-3 neon-card"
+          >
+            <i data-lucide="github" class="w-4 h-4"></i>
+            <span>GitHub Repository</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Live Simulated Stats Widgets -->
+        <div
+          class="pt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left font-mono"
+        >
+          <div
+            class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md neon-card"
+          >
+            <div
+              class="text-[10px] text-slate-400 uppercase tracking-widest flex items-center gap-1"
+            >
+              <i data-lucide="activity" class="w-3 h-3 text-cyan-400"></i>
+              INGESTION RATE
+            </div>
+            <div
+              class="text-2xl sm:text-3xl font-bold text-cyan-400 mt-1 flex items-baseline gap-1"
+            >
+              <span id="stat-ingestion">2.41</span>
+              <span class="text-xs text-slate-400">M msg/sec</span>
+            </div>
+            <div
+              class="text-[10px] text-emerald-400 mt-1 flex items-center gap-1"
+            >
+              <i data-lucide="trending-up" class="w-3 h-3"></i> Dynamic Load
+              Active
+            </div>
+          </div>
+
+          <div
+            class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md neon-card"
+          >
+            <div
+              class="text-[10px] text-slate-400 uppercase tracking-widest flex items-center gap-1"
+            >
+              <i data-lucide="zap" class="w-3 h-3 text-cyan-400"></i> VWAP
+              COMPUTE
+            </div>
+            <div
+              class="text-2xl sm:text-3xl font-bold text-cyan-400 mt-1 flex items-baseline gap-1"
+            >
+              <span id="stat-vwap">0.38</span>
+              <span class="text-xs text-slate-400">ms</span>
+            </div>
+            <div class="text-[10px] text-cyan-400/80 mt-1">SIMD Vectorized</div>
+          </div>
+
+          <div
+            class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md neon-card"
+          >
+            <div
+              class="text-[10px] text-slate-400 uppercase tracking-widest flex items-center gap-1"
+            >
+              <i data-lucide="minimize-2" class="w-3 h-3 text-cyan-400"></i>
+              COMPRESSION
+            </div>
+            <div
+              class="text-2xl sm:text-3xl font-bold text-cyan-400 mt-1 flex items-baseline gap-1"
+            >
+              <span>8.4</span>
+              <span class="text-xs text-slate-400">x</span>
+            </div>
+            <div class="text-[10px] text-slate-300 mt-1">
+              ZSTD / Parquet Store
+            </div>
+          </div>
+
+          <div
+            class="p-4 rounded-xl bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md neon-card"
+          >
+            <div
+              class="text-[10px] text-slate-400 uppercase tracking-widest flex items-center gap-1"
+            >
+              <i data-lucide="cpu" class="w-3 h-3 text-cyan-400"></i> RAM
+              OVERHEAD
+            </div>
+            <div
+              class="text-2xl sm:text-3xl font-bold text-cyan-400 mt-1 flex items-baseline gap-1"
+            >
+              <span>-65</span>
+              <span class="text-xs text-slate-400">%</span>
+            </div>
+            <div class="text-[10px] text-emerald-400 mt-1">Zero-Copy mmap</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 📊 AMAZE #1: REAL-TIME TICKER & ORDER BOOK SIMULATOR -->
+    <section
+      id="orderbook"
+      class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+    >
+      <div
+        class="p-6 sm:p-8 rounded-2xl bg-slate-900/90 border border-cyan-500/30 shadow-[0_0_40px_rgba(0,240,255,0.15)] font-mono neon-card"
+      >
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-cyan-500/20 gap-4"
+        >
+          <div>
+            <div
+              class="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-1"
+            >
+              <i data-lucide="activity" class="w-4 h-4 animate-pulse"></i> LIVE
+              TICKER & LEVEL-2 DEPTH ENGINE
+            </div>
+            <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+              BTC/USDT Real-time Stream
+              <span
+                class="text-xs px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                >L2 LIVE</span
+              >
+            </h2>
+          </div>
+          <div class="flex items-center gap-6">
+            <div class="text-right">
+              <div class="text-[10px] text-slate-400 uppercase">
+                CURRENT MID PRICE
+              </div>
+              <div
+                id="ticker-price"
+                class="text-2xl font-extrabold text-cyan-400"
+              >
+                $67,420.50
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] text-slate-400 uppercase">SPREAD</div>
+              <div
+                id="ticker-spread"
+                class="text-sm font-bold text-emerald-400"
+              >
+                0.01 USDT
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orderbook Grid Simulation -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <!-- Asks (Sells) -->
+          <div class="space-y-2">
+            <div
+              class="text-xs text-red-400 font-bold flex justify-between border-b border-slate-800 pb-1"
+            >
+              <span>ASK PRICE ($)</span>
+              <span>SIZE (BTC)</span>
+              <span>DEPTH</span>
+            </div>
+            <div id="asks-container" class="space-y-1.5 text-xs">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Bids (Buys) -->
+          <div class="space-y-2">
+            <div
+              class="text-xs text-emerald-400 font-bold flex justify-between border-b border-slate-800 pb-1"
+            >
+              <span>BID PRICE ($)</span>
+              <span>SIZE (BTC)</span>
+              <span>DEPTH</span>
+            </div>
+            <div id="bids-container" class="space-y-1.5 text-xs">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 🧮 AMAZE #2: LATENCY & ARCHITECTURE BENCHMARK CALCULATOR -->
+    <section
+      id="benchmark"
+      class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+    >
+      <div
+        class="p-6 sm:p-8 rounded-2xl bg-slate-900/90 border border-cyan-500/30 shadow-[0_0_40px_rgba(0,240,255,0.15)] font-mono neon-card"
+      >
+        <div class="mb-8">
+          <div
+            class="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-1"
+          >
+            <i data-lucide="calculator" class="w-4 h-4"></i> INTERACTIVE
+            PERFORMANCE CALCULATOR
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white">
+            Compare Processing Throughput
+          </h2>
+          <p class="text-slate-400 text-sm mt-1">
+            Adjust tick volume scale to observe processing delay advantage over
+            standard relational databases.
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div>
+            <div
+              class="flex justify-between text-sm text-slate-300 font-bold mb-2"
+            >
+              <span>Daily Tick Volume Input:</span>
+              <span id="volume-label" class="text-cyan-400"
+                >50 Million Ticks / Day</span
+              >
+            </div>
+            <input
+              type="range"
+              id="volume-slider"
+              min="10"
+              max="500"
+              value="50"
+              class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+            <div class="p-5 rounded-xl bg-slate-950 border border-red-500/30">
+              <div class="text-xs text-red-400 font-bold mb-1">
+                TRADITIONAL SQL / ROW DB
+              </div>
+              <div
+                id="trad-time"
+                class="text-3xl font-extrabold text-slate-100"
+              >
+                14.2 sec
+              </div>
+              <div class="text-[11px] text-slate-400 mt-2">
+                Row locking, memory GC overhead, uncompressed disk IO
+              </div>
+            </div>
+            <div
+              class="p-5 rounded-xl bg-slate-950 border border-cyan-400/50 shadow-[0_0_20px_rgba(0,240,255,0.2)]"
+            >
+              <div class="text-xs text-cyan-400 font-bold mb-1">
+                FINDATA LAKE (PARQUET + SIMD)
+              </div>
+              <div
+                id="findata-time"
+                class="text-3xl font-extrabold text-cyan-400"
+              >
+                0.31 sec
+              </div>
+              <div class="text-[11px] text-emerald-400 mt-2">
+                100% Zero-Copy mmap, ZSTD Columnar Vectorization
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 🧩 THE 11-SECTION ARCHITECTURE ROADMAP WITH FILTER TABS -->
+    <section
+      id="roadmap"
+      class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16"
+    >
+      <!-- Section Header -->
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <div
+          class="inline-flex items-center space-x-2 text-cyan-400 font-mono text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 neon-card"
+        >
+          <i data-lucide="cpu" class="w-4 h-4"></i>
+          <span>Architectural Excellence Breakdown</span>
+        </div>
+        <h2
+          class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight"
+        >
+          The 11 System Layers
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base">
+          An end-to-end breakdown of how Rayaan Tasnim's financial data lake
+          ingests, vectors, audits for drift, and writes parquet stores without
+          latency bottlenecks.
+        </p>
+      </div>
+
+      <!-- 11 CARDS CONTAINER -->
+      <div class="space-y-16">
+        <!-- SECTION 1 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="ingest"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="radio" class="w-4 h-4"></i> LAYER 01 • WEBSOCKET
+              HARVESTER
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              The Ingress Horizon
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              High-speed multi-broker async WebSocket harvesting engine capable
+              of consuming disparate exchange feeds simultaneously. Standardizes
+              raw JSON and binary payloads into strict, typed tick memory
+              objects at microsecond scale.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Async IO Event Loop with auto-reconnecting socket pools
+              </div>
+              <div class="text-slate-400">
+                • Dynamic tick normalization across Binance, Coinbase, and FIX
+                protocol
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+                alt="WebSocket Ingress Engine"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="server" class="w-4 h-4"></i>
+                  HARVEST_CORE_01</span
+                >
+                <span class="text-emerald-400 flex items-center gap-1"
+                  ><i data-lucide="zap" class="w-3.5 h-3.5"></i> 100k
+                  msg/s</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row-reverse items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="ingest"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="repeat" class="w-4 h-4"></i> LAYER 02 • RING
+              BUFFER QUEUE
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              Bounded Isolation Loop
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Lock-free fixed-capacity circular memory queues decouple network
+              ingestion socket IO from execution analytics. Completely prevents
+              lock contention and memory allocation overhead under intense
+              market volatility bursts.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Disruptor-style lock-free sequence barriers
+              </div>
+              <div class="text-slate-400">
+                • Zero GC pressure through reusable memory-slot pooling
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
+                alt="Ring Buffer Architecture"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="cpu" class="w-4 h-4"></i> CAPACITY:
+                  1,048,576</span
+                >
+                <span class="text-cyan-400 font-bold">LATENCY: 14ns</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="ingest"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="binary" class="w-4 h-4"></i> LAYER 03 • SIMD
+              VECTOR COMPUTATIONS
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              Vectorized Matrix Pipeline
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Replaces scalar iteration loops with memory-aligned vector
+              instructions (AVX-512 CPU hardware instructions). Processes
+              millions of time-series order book data points concurrently with
+              ultra-minimal CPU cycle execution.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Cache line-aligned contiguous memory arrays
+              </div>
+              <div class="text-slate-400">
+                • Vectorized order book depth aggregation and spread calculus
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80"
+                alt="SIMD Matrix Hardware"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="zap" class="w-4 h-4"></i> INSTRUCTION:
+                  AVX-512</span
+                >
+                <span class="text-emerald-400 font-bold">SPEEDUP: 18.2x</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row-reverse items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="quality"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="line-chart" class="w-4 h-4"></i> LAYER 04 •
+              REAL-TIME VWAP ENGINE
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              Live Volume-Weight Calculator
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Streaming Volume-Weighted Average Price calculations with custom
+              rolling sliding windows (1m, 5m, 1h). Updates execution benchmarks
+              dynamically as trades stream into the system without recalculating
+              historical sets.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Incremental cumulative sum arrays: O(1) state updates
+              </div>
+              <div class="text-slate-400">
+                • Dynamic multi-window feature store pipeline feeds
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80"
+                alt="VWAP Dynamic Calculation"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="clock" class="w-4 h-4"></i> COMPUTE:
+                  0.38ms</span
+                >
+                <span class="text-emerald-400 font-bold">PRECISION: 10^-8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 5 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="quality"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="shield-alert" class="w-4 h-4"></i> LAYER 05 •
+              ROLLING VOLATILITY BOUNDS
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              Volatility Guardrail Subsystem
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Real-time exponential variance and ATR/Bollinger volatility
+              boundary calculations. Instantaneously detects abnormal liquidity
+              contractions and micro-flash crashes across fast-moving pairs.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Welford's algorithm for numerically stable variance tracking
+              </div>
+              <div class="text-slate-400">
+                • Real-time volatility feature extraction for algorithmic
+                execution
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
+                alt="Chaos Engine Volatility"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="activity" class="w-4 h-4"></i> METRIC:
+                  EWMA</span
+                >
+                <span class="text-cyan-400 font-bold">STATE: REAL-TIME</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 6 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row-reverse items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="storage"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="hard-drive" class="w-4 h-4"></i> LAYER 06 •
+              ZERO-COPY MMAP STORAGE
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              Zero-Copy Disk Inception
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Utilizes OS-level
+              <code class="text-cyan-400 font-mono">mmap</code> structures to
+              write memory buffers straight to disk partitions bypassing
+              application RAM overhead. Enables multi-gigabyte daily file writes
+              with virtually zero garbage collection pauses.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Kernel page-cache direct mapping for maximum I/O throughput
+              </div>
+              <div class="text-slate-400">
+                • Dynamic partition page flushing to persistent NVMe arrays
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80"
+                alt="Zero Copy Direct NVMe Storage"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="database" class="w-4 h-4"></i> I/O PATH:
+                  DIRECT NVME</span
+                >
+                <span class="text-emerald-400 font-bold"
+                  >RAM OVERHEAD: ~0%</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 7 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="storage"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="folder-tree" class="w-4 h-4"></i> LAYER 07 •
+              TEMPORAL PARTITIONING
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              Hierarchical Partition Matrix
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Strict temporal partitioning engine structuring files into
+              <code class="text-cyan-400 font-mono"
+                >year/month/day/hour/symbol</code
+              >
+              directory trees. Dramatically speeds up downstream SQL analytics
+              queries through partition pruning.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Hive-compatible directory structure for Athena / DuckDB
+              </div>
+              <div class="text-slate-400">
+                • Automated partition index generation and metadata caching
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=800&q=80"
+                alt="Temporal Partition Tree"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="layers" class="w-4 h-4"></i> TREE:
+                  /YYYY/MM/DD/HH</span
+                >
+                <span class="text-emerald-400 font-bold"
+                  >PRUNING: &lt; 2ms</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 8 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row-reverse items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="storage"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="archive" class="w-4 h-4"></i> LAYER 08 • PARQUET
+              COMPACTION
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              Compactor Protocol Engine
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Micro-batch buffer flushing into high-density Parquet files
+              leveraging ZSTD & Snappy compression codecs. Achieves up to 8.4x
+              storage reduction while maintaining instant column-decoding
+              performance.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Columnar dictionary encoding for tick prices & sizes
+              </div>
+              <div class="text-slate-400">
+                • Background thread compaction of small memory segments
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+                alt="Parquet Storage Compression"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="file-text" class="w-4 h-4"></i> APACHE
+                  PARQUET</span
+                >
+                <span class="text-cyan-400 font-bold">CODEC: ZSTD (LVL 7)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 9 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="quality"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="eye" class="w-4 h-4"></i> LAYER 09 • STATISTICAL
+              AUDITING
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              Regime Shift Watchtower
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              SciPy-powered statistical drift evaluator executing continuous
+              Kolmogorov-Smirnov tests. Compares incoming distribution
+              frequencies against baseline historical samples to detect
+              structural regime shifts.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Non-parametric continuous distribution comparison
+              </div>
+              <div class="text-slate-400">
+                • Automated model retraining triggers for ML feature stores
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=800&q=80"
+                alt="Statistical Audit Kolmogorov Smirnov"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="check" class="w-4 h-4"></i> K-S TEST
+                  ACTIVE</span
+                >
+                <span class="text-emerald-400 font-bold">DRIFT: NORMAL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 10 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row-reverse items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="quality"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="git-branch" class="w-4 h-4"></i> LAYER 10 •
+              DYNAMIC SCHEMA EVOLUTION
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              Adaptive Schema Framework
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Strict yet adaptive schema evolution guardrails. Dynamically
+              incorporates new exchange payload attributes without breaking
+              existing parquet reader pipelines or requiring database
+              migrations.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Backward and forward compatible additive schema expansion
+              </div>
+              <div class="text-slate-400">
+                • Type-casting validation rules with automatic null padding
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+                alt="Dynamic Schema Pipeline"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="shield-check" class="w-4 h-4"></i> SCHEMA
+                  GUARDIAN</span
+                >
+                <span class="text-emerald-400 font-bold"
+                  >COMPATIBILITY: FULL</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 11 -->
+        <div
+          class="roadmap-panel layer-card flex flex-col lg:flex-row items-center gap-12 p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-cyan-500/30 neon-card"
+          data-category="quality"
+        >
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 font-mono text-xs font-bold"
+            >
+              <i data-lucide="filter" class="w-4 h-4"></i> LAYER 11 • ANOMALY
+              QUARANTINE
+            </div>
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
+              Outlier Gatekeeper Engine
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Automated quarantine pipeline that filters corrupt broker
+              timestamps, impossible price spikes, and missing sequence IDs into
+              dead-letter storage queues before polluting downstream analytics.
+            </p>
+            <div
+              class="p-4 rounded-xl bg-slate-950 border border-cyan-500/20 font-mono text-xs text-slate-300 space-y-2"
+            >
+              <div class="text-cyan-400 font-bold flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Key Feature
+                Highlight
+              </div>
+              <div class="text-slate-400">
+                • Z-score outlier detection combined with liquidity sanity
+                bounds
+              </div>
+              <div class="text-slate-400">
+                • Isolated dead-letter storage for asynchronous root cause
+                diagnosis
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="relative rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 group shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80"
+                alt="Outlier Gatekeeper Quarantine"
+                class="w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-85"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 font-mono text-xs text-cyan-400 flex justify-between items-center bg-slate-950/90 p-3 rounded-xl border border-cyan-500/30 shadow-lg"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><i data-lucide="alert-octagon" class="w-4 h-4"></i>
+                  DEAD-LETTER QUEUE</span
+                >
+                <span class="text-cyan-400 font-bold">REJECT RATE: 0.001%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 🖥️ INTERACTIVE LIVE TERMINAL CONSOLE -->
+    <section
+      id="live-simulator"
+      class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+    >
+      <div
+        class="rounded-2xl bg-slate-950 border border-cyan-500/40 shadow-[0_0_50px_rgba(0,240,255,0.2)] overflow-hidden font-mono neon-card"
+      >
+        <!-- Terminal Header -->
+        <div
+          class="bg-slate-900 px-4 py-3.5 border-b border-cyan-500/30 flex items-center justify-between"
+        >
+          <div class="flex items-center space-x-2">
+            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+            <span class="text-xs text-slate-300 ml-2 font-bold"
+              >findata-lake-daemon --live-stream</span
+            >
+          </div>
+          <div
+            class="text-[10px] text-cyan-400 font-bold uppercase tracking-widest flex items-center gap-2"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"
+            ></span>
+            ACTIVE DAEMON LOGS
+          </div>
+        </div>
+
+        <!-- Terminal Tabs -->
+        <div
+          class="flex border-b border-cyan-500/20 bg-slate-900/60 overflow-x-auto text-xs"
+        >
+          <button
+            onclick="switchTab('ingress')"
+            id="tab-ingress"
+            class="terminal-tab px-5 py-3 text-cyan-400 border-b-2 border-cyan-400 bg-cyan-500/10 font-bold whitespace-nowrap flex items-center gap-2"
+          >
+            <i data-lucide="terminal" class="w-3.5 h-3.5"></i> 01. Ingress
+          </button>
+          <button
+            onclick="switchTab('ring')"
+            id="tab-ring"
+            class="terminal-tab px-5 py-3 text-slate-400 hover:text-cyan-400 border-b-2 border-transparent whitespace-nowrap flex items-center gap-2"
+          >
+            <i data-lucide="repeat" class="w-3.5 h-3.5"></i> 02. RingBuffer
+          </button>
+          <button
+            onclick="switchTab('simd')"
+            id="tab-simd"
+            class="terminal-tab px-5 py-3 text-slate-400 hover:text-cyan-400 border-b-2 border-transparent whitespace-nowrap flex items-center gap-2"
+          >
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> 03. SIMD
+          </button>
+          <button
+            onclick="switchTab('vwap')"
+            id="tab-vwap"
+            class="terminal-tab px-5 py-3 text-slate-400 hover:text-cyan-400 border-b-2 border-transparent whitespace-nowrap flex items-center gap-2"
+          >
+            <i data-lucide="line-chart" class="w-3.5 h-3.5"></i> 04. VWAP
+          </button>
+          <button
+            onclick="switchTab('parquet')"
+            id="tab-parquet"
+            class="terminal-tab px-5 py-3 text-slate-400 hover:text-cyan-400 border-b-2 border-transparent whitespace-nowrap flex items-center gap-2"
+          >
+            <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i> 08. Parquet
+            Write
+          </button>
+        </div>
+
+        <!-- Terminal Code Output Box -->
+        <div
+          id="terminal-body"
+          class="p-6 text-xs sm:text-sm leading-relaxed overflow-x-auto text-slate-300 min-h-[240px]"
+        >
+          <div id="content-ingress" class="tab-content space-y-1.5">
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.102]
+              <span class="text-emerald-400 font-bold">INFO</span> [Ingress]
+              Connected to WebSocket endpoint
+              wss://stream.binance.com:9443/ws/btcusdt@trade
+            </div>
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.104]
+              <span class="text-emerald-400 font-bold">INFO</span> [Ingress]
+              Tick normalized: BTCUSDT | P: 67420.50 | V: 0.8412 | T:
+              1729554242104
+            </div>
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.105]
+              <span class="text-cyan-400 font-bold">DEBUG</span> [Ingress]
+              Pushed object to RingBuffer slot #849201
+            </div>
+          </div>
+
+          <div id="content-ring" class="tab-content hidden space-y-1.5">
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.106]
+              <span class="text-emerald-400 font-bold">INFO</span> [RingBuffer]
+              Slot #849201 sequence barrier verified. Lock-free delay: 12ns
+            </div>
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.107]
+              <span class="text-cyan-400 font-bold">DEBUG</span> [RingBuffer]
+              Capacity: 1,048,576 | Head: 849201 | Tail: 849198 | Utilization:
+              0.0002%
+            </div>
+          </div>
+
+          <div id="content-simd" class="tab-content hidden space-y-1.5">
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.110]
+              <span class="text-emerald-400 font-bold">INFO</span> [SIMD]
+              Executing AVX-512 batch array matrix compute across 64,000 floats
+            </div>
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.111]
+              <span class="text-cyan-400 font-bold">DEBUG</span> [SIMD]
+              Execution time: 0.014ms | Memory throughput: 42.8 GB/s
+            </div>
+          </div>
+
+          <div id="content-vwap" class="tab-content hidden space-y-1.5">
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.115]
+              <span class="text-emerald-400 font-bold">INFO</span> [VWAP]
+              Rolling window 5m recalculated: $67,418.22
+            </div>
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.116]
+              <span class="text-cyan-400 font-bold">DEBUG</span> [VWAP]
+              Cumulative Volume: 14,820.44 BTC | Incremental Step: O(1)
+            </div>
+          </div>
+
+          <div id="content-parquet" class="tab-content hidden space-y-1.5">
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.120]
+              <span class="text-emerald-400 font-bold">INFO</span> [Parquet]
+              Flushing micro-batch 10,000 records ->
+              /lake/year=2026/month=10/day=21/btcusdt.parquet
+            </div>
+            <div class="text-slate-500">
+              [2026-10-21 23:49:02.122]
+              <span class="text-cyan-400 font-bold">DEBUG</span> [Parquet] ZSTD
+              compression finished. Original: 1.42MB | Compressed: 0.17MB
+              (8.35x)
+            </div>
+          </div>
+        </div>
+
+        <!-- Terminal Footer Actions -->
+        <div
+          class="bg-slate-900/90 px-4 py-3 border-t border-cyan-500/20 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-400"
+        >
+          <span class="flex items-center gap-2 font-mono">
+            <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400"></i>
+            Architect: Rayaan Tasnim
+          </span>
+          <button
+            onclick="copyTerminalLogs()"
+            class="px-3.5 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 border border-cyan-500/30 transition-all font-mono flex items-center gap-1.5 neon-btn"
+          >
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span id="copy-btn-text">Copy Logs</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. 🥾 OLYMPIAD FOOTER -->
+    <footer
+      class="mt-20 border-t border-cyan-500/30 py-12 px-4 bg-slate-950 text-center relative z-20"
+    >
+      <div
+        class="max-w-4xl mx-auto space-y-4 font-mono text-xs sm:text-sm tracking-wider"
+      >
+        <div class="text-slate-200">
+          Authorized & Architected by
+          <span class="text-cyan-400 font-bold">Rayaan Tasnim</span>
+        </div>
+        <div class="text-slate-400 flex items-center justify-center gap-2">
+          <i data-lucide="award" class="w-4 h-4 text-cyan-400"></i> Powered by
+          <span class="text-cyan-400 font-bold">Olympiad Edge</span>
+        </div>
+        <div class="text-slate-500 text-[11px] pt-2">
+          All rights Reserved &copy; 2026 <br />
+          Real-Time Financial Market Data Lake & Feature Store
+        </div>
+
+        <div class="pt-6 flex justify-center items-center">
+          <a
+            href="https://github.com/rayaantasnim/Real-Time-Financial-Market-Data-Lake-Feature-Store"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="read-btn"
+          >
+            <i data-lucide="github" class="w-4 h-4"></i>
+            <span>Read on GitHub</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript Execution & Interactive Logic -->
+    <script src="script.js"></script>
+  </body>
+</html>
